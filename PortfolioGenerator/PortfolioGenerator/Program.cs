@@ -49,7 +49,7 @@ namespace PortfolioGenerator
                                 foreach(string file in column1)
                                 {
                                    
-                                    outputFile.WriteLine("<a target = \"_blank\" href = \"Images/Portfolio/"+file+"\" >");
+                                    outputFile.WriteLine("<a target = \"_blank\" href = \"Images/Portfolio/Large/"+file.Replace("-s-","-l-")+"\" >");
                                     outputFile.WriteLine("<img src = \"Images/Portfolio/" + file+ "\" loading = \"lazy\" style = \"width:100% \" >");
                                     outputFile.WriteLine("</a>");
              
@@ -60,7 +60,7 @@ namespace PortfolioGenerator
                                 foreach (string file in column2)
                                 {
 
-                                    outputFile.WriteLine("<a target = \"_blank\" href = \"Images/Portfolio/" + file + "\" >");
+                                    outputFile.WriteLine("<a target = \"_blank\" href = \"Images/Portfolio/Large/" + file.Replace("-s-", "-l-") + "\" >");
                                     outputFile.WriteLine("<img src = \"Images/Portfolio/" + file + "\" loading = \"lazy\" style = \"width:100% \" >");
                                     outputFile.WriteLine("</a>");
 
