@@ -3,9 +3,6 @@ img {margin-bottom: -7px}
 .w3-row-padding img {margin-bottom: 12px}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 1500px) {
-  .w3-half {width:100%;}
-} 
 
 .my-gallery {
 }
