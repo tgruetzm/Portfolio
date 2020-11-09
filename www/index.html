@@ -14,58 +14,116 @@
 <body>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-row" style="max-width:3000">
+<div class="w3-content" style="max-width:1000px">
 
-
-<div class="w3-row" id="myGrid" style="margin-bottom:128px">
+<div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
 <!-- Photo Grid -->
-<div class="w3-half">
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-1.jpg" >
-<img src = "Images/Portfolio/portfolio-s-1.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-1.jpg" itemprop="contentUrl" data-size="1500x1000">
+ <img src="Images\Portfolio\Thumbnails\portfolio-1.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-3.jpg" >
-<img src = "Images/Portfolio/portfolio-s-3.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-2.jpg" itemprop="contentUrl" data-size="1500x1026">
+ <img src="Images\Portfolio\Thumbnails\portfolio-2.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-5.jpg" >
-<img src = "Images/Portfolio/portfolio-s-5.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-3.jpg" itemprop="contentUrl" data-size="1500x1159">
+ <img src="Images\Portfolio\Thumbnails\portfolio-3.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-7.jpg" >
-<img src = "Images/Portfolio/portfolio-s-7.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-4.jpg" itemprop="contentUrl" data-size="1500x1159">
+ <img src="Images\Portfolio\Thumbnails\portfolio-4.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-9.jpg" >
-<img src = "Images/Portfolio/portfolio-s-9.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-5.jpg" itemprop="contentUrl" data-size="1500x1941">
+ <img src="Images\Portfolio\Thumbnails\portfolio-5.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-</div>
-<div class="w3-half">
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-2.jpg" >
-<img src = "Images/Portfolio/portfolio-s-2.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-6.jpg" itemprop="contentUrl" data-size="1500x1159">
+ <img src="Images\Portfolio\Thumbnails\portfolio-6.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-4.jpg" >
-<img src = "Images/Portfolio/portfolio-s-4.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-7.jpg" itemprop="contentUrl" data-size="1500x1941">
+ <img src="Images\Portfolio\Thumbnails\portfolio-7.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-6.jpg" >
-<img src = "Images/Portfolio/portfolio-s-6.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-8.jpg" itemprop="contentUrl" data-size="1500x1159">
+ <img src="Images\Portfolio\Thumbnails\portfolio-8.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-8.jpg" >
-<img src = "Images/Portfolio/portfolio-s-8.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-9.jpg" itemprop="contentUrl" data-size="1500x1000">
+ <img src="Images\Portfolio\Thumbnails\portfolio-9.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-<a target = "_blank" href = "Images/Portfolio/Large/portfolio-l-10.jpg" >
-<img src = "Images/Portfolio/portfolio-s-10.jpg" loading = "lazy" style = "width:100% " >
+<a href="Images\Portfolio\portfolio-10.jpg" itemprop="contentUrl" data-size="1500x1200">
+ <img src="Images\Portfolio\Thumbnails\portfolio-10.jpg" itemprop="thumbnail" alt="Image description" style = "width:100% "/>
 </a>
-</div>
 
- 
+
+</div>
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 <!-- End Page Content -->
 </div>
+<script src="photoswipe.js"></script>  
 
 <!-- Footer -->
 <div id="footer">
 </div>
- 
-<script>
-</script>
+
 
 </body>
 </html>

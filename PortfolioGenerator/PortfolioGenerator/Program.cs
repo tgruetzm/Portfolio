@@ -1,14 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 namespace PortfolioGenerator
 {
     class Program
     {
+        struct ImageProperties{
+            public int index;
+            public int width;
+            public int height;
+            public string name;
+        }
+
         static void Main(string[] args)
         {
             string baseDir = @"C:\Users\tgrue\OneDrive\Projects\Troy Gruetzmacher\www";
+            string portfolioDir = @"C:\Users\tgrue\OneDrive\Pictures\Portfolio";
+
+            List<ImageProperties> images = new List<ImageProperties>();
+            //get portfolio images
+            string[] portfolioFiles = Directory.GetFiles(portfolioDir);
+            int index = 1;
+            foreach (string iName in portfolioFiles)
+            {
+                
+                //generate thumbnail
+                using (Image image = Image.Load(portfolioFiles[index-1]))
+                {
+                    int width = 1000;
+                    int height = 0;
+                    image.Mutate(x => x.Resize(width, height));
+
+                    image.Save(baseDir + @"\Images\Portfolio\Thumbnails\portfolio-" +index+".jpg");
+                }
+                //generate larger image
+                using (Image image = Image.Load(portfolioFiles[index-1]))
+                {
+                    int width = 1500;
+                    int height = 0;
+                    image.Mutate(x => x.Resize(width, height));
+                    string name = "portfolio-" + index + ".jpg";
+                    image.Save(baseDir + @"\Images\Portfolio\" + name);
+                    ImageProperties ip = new ImageProperties();
+                    ip.width = width;
+                    ip.height = image.Height;
+                    ip.index = index;
+                    ip.name = name;
+                    images.Add(ip);
+                }
+                index++;
+            }
+
             try
             {
                 using (var sr = new StreamReader(baseDir + @"\index.template.html"))
@@ -22,50 +67,13 @@ namespace PortfolioGenerator
                             outputFile.WriteLine(s);
                             if(s == "<!-- Photo Grid -->")//start generation process
                             {
-                                List<string> column1 = new List<string>();
-                                List<string> column2 = new List<string>();
-                                string[] fileEntries = Directory.GetFiles(baseDir + @"\Images\Portfolio");
-
-                                Dictionary<int, string> fileDict = new Dictionary<int, string>();
-                                foreach(string fullFile in fileEntries)
-                                {
-                                    string[] fileArray = fullFile.Split('\\');
-                                    string file = fileArray[fileArray.Length - 1];
-                                    string[] fileNameArray = file.Split('-');
-                                    int number = int.Parse(fileNameArray[fileNameArray.Length - 1].Replace(".jpg",""));
-                                    fileDict.Add(number, file);
-                                }
-
-
-                                for (int key = 1; key <= fileDict.Keys.Count; ++key)
-                                {
-                                    if ((key % 2) == 1)
-                                        column1.Add(fileDict[key]);
-                                    else
-                                        column2.Add(fileDict[key]);
-                                }
-                                //column 1
-                                outputFile.WriteLine("<div class=\"w3-half\">");
-                                foreach(string file in column1)
-                                {
-                                   
-                                    outputFile.WriteLine("<a target = \"_blank\" href = \"Images/Portfolio/Large/"+file.Replace("-s-","-l-")+"\" >");
-                                    outputFile.WriteLine("<img src = \"Images/Portfolio/" + file+ "\" loading = \"lazy\" style = \"width:100% \" >");
+                                foreach(ImageProperties ip in images)
+                                {  
+                                    outputFile.WriteLine("<a href=\"Images\\Portfolio\\"+ ip.name +"\" itemprop=\"contentUrl\" data-size=\""+ip.width +"x"+ip.height+"\">");
+                                    outputFile.WriteLine(" <img src=\"Images\\Portfolio\\Thumbnails\\" + ip.name + "\" itemprop=\"thumbnail\" alt=\"Image description\" style = \"width:100% \"/>");
                                     outputFile.WriteLine("</a>");
-             
                                 }
-                                outputFile.WriteLine("</div>");
-                                //column 2
-                                outputFile.WriteLine("<div class=\"w3-half\">");
-                                foreach (string file in column2)
-                                {
-
-                                    outputFile.WriteLine("<a target = \"_blank\" href = \"Images/Portfolio/Large/" + file.Replace("-s-", "-l-") + "\" >");
-                                    outputFile.WriteLine("<img src = \"Images/Portfolio/" + file + "\" loading = \"lazy\" style = \"width:100% \" >");
-                                    outputFile.WriteLine("</a>");
-
-                                }
-                                outputFile.WriteLine("</div>");
+   
                             }
                         }
                     }
