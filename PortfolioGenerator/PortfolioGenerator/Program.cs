@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
 
 namespace PortfolioGenerator
@@ -26,7 +27,8 @@ namespace PortfolioGenerator
             int index = 1;
             foreach (string iName in portfolioFiles)
             {
-                
+                JpegEncoder encoder = new JpegEncoder();
+                encoder.Quality = 65;
                 //generate thumbnail
                 using (Image image = Image.Load(portfolioFiles[index-1]))
                 {
@@ -34,16 +36,17 @@ namespace PortfolioGenerator
                     int height = 0;
                     image.Mutate(x => x.Resize(width, height));
 
-                    image.Save(baseDir + @"\Images\Portfolio\Thumbnails\portfolio-" +index+".jpg");
+                    image.Save(baseDir + @"\Images\Portfolio\Thumbnails\portfolio-" +index+".jpg",encoder);
                 }
                 //generate larger image
                 using (Image image = Image.Load(portfolioFiles[index-1]))
                 {
                     int width = 1500;
                     int height = 0;
+
                     image.Mutate(x => x.Resize(width, height));
                     string name = "portfolio-" + index + ".jpg";
-                    image.Save(baseDir + @"\Images\Portfolio\" + name);
+                    image.Save(baseDir + @"\Images\Portfolio\" + name,encoder);
                     ImageProperties ip = new ImageProperties();
                     ip.width = width;
                     ip.height = image.Height;
