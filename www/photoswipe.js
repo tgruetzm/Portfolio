@@ -3,7 +3,7 @@
 		var initPhotoSwipeFromDOM = function(gallerySelector) {
 
 			var parseThumbnailElements = function(el) {
-			    var thumbElements = el.childNodes,
+			    var thumbElements = el.getElementsByTagName('a'),//el.childNodes,
 			        numNodes = thumbElements.length,
 			        items = [],
 			        el,
@@ -84,7 +84,7 @@
 			        return;
 			    }
 
-			    var clickedGallery = clickedListItem.parentNode;
+			    var clickedGallery = clickedListItem.parentNode.parentNode;
 
 			    var childNodes = clickedListItem.parentNode.childNodes,
 			        numChildNodes = childNodes.length,
