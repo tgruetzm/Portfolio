@@ -86,7 +86,7 @@
 
 			    var clickedGallery = clickedListItem.parentNode.parentNode;
 
-			    var childNodes = clickedListItem.parentNode.childNodes,
+			    var childNodes = clickedGallery.getElementsByTagName('a'),
 			        numChildNodes = childNodes.length,
 			        nodeIndex = 0,
 			        index;
