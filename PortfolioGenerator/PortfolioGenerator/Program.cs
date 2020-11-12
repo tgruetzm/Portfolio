@@ -87,7 +87,7 @@ namespace PortfolioGenerator
                 //generate thumbnail
                 using (Image image = Image.Load(portfolioFiles[index - 1]))
                 {
-                    int width = 1000;
+                    int width = 700;
                     int height = 0;
                     image.Mutate(x => x.Resize(width, height));
 
